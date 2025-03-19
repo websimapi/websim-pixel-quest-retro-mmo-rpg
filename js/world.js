@@ -100,16 +100,20 @@ export class WorldGenerator {
             // Calculate distance from center for a more natural shape
             const distance = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(z - centerZ, 2));
             if (distance < size / 2) {
+              // Ensure x and z are integers
+              const tileX = Math.floor(x);
+              const tileZ = Math.floor(z);
+              
               // Create water tile
-              this.createWaterTile(x, z);
-              this.tileMap[x][z] = {
+              this.createWaterTile(tileX, tileZ);
+              this.tileMap[tileX][tileZ] = {
                 type: 'water',
                 walkable: false
               };
               
               // Create some sand around the water
-              for (let sx = x - 1; sx <= x + 1; sx++) {
-                for (let sz = z - 1; sz <= z + 1; sz++) {
+              for (let sx = tileX - 1; sx <= tileX + 1; sx++) {
+                for (let sz = tileZ - 1; sz <= tileZ + 1; sz++) {
                   if (
                     sx >= 0 && sx < this.worldSize && 
                     sz >= 0 && sz < this.worldSize &&
