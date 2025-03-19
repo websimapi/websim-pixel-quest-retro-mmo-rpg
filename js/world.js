@@ -29,6 +29,13 @@ export class WorldGenerator {
     this.tileMap = new Array(this.worldSize);
     for (let x = 0; x < this.worldSize; x++) {
       this.tileMap[x] = new Array(this.worldSize);
+      // Initialize each tile with a default value
+      for (let z = 0; z < this.worldSize; z++) {
+        this.tileMap[x][z] = {
+          type: 'grass',
+          walkable: true
+        };
+      }
     }
     
     // Generate ground plane
@@ -75,16 +82,6 @@ export class WorldGenerator {
     ground.userData.isWorldObject = true;
     
     this.scene.add(ground);
-    
-    // Fill the tile map with grass by default
-    for (let x = 0; x < this.worldSize; x++) {
-      for (let z = 0; z < this.worldSize; z++) {
-        this.tileMap[x][z] = {
-          type: 'grass',
-          walkable: true
-        };
-      }
-    }
   }
   
   generateWater() {
@@ -291,4 +288,3 @@ export class WorldGenerator {
     return this.tileMap[tileX][tileZ].walkable;
   }
 }
-
