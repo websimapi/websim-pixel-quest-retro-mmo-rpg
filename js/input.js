@@ -74,6 +74,11 @@ export class InputHandler {
   }
   
   setupMouseEvents(canvas) {
+    if (!canvas) {
+      console.warn('Canvas element is undefined in InputHandler');
+      return;
+    }
+    
     // Mouse move
     canvas.addEventListener('mousemove', (e) => {
       this.mousePosition.x = (e.clientX / window.innerWidth) * 2 - 1;
@@ -143,4 +148,3 @@ export class InputHandler {
     this.mouseDown = false;
   }
 }
-
