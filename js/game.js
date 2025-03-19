@@ -44,7 +44,7 @@ export class Game {
     this.world = new WorldGenerator(this.scene);
     
     // Set up input handler
-    this.inputHandler = new InputHandler(this.canvas);
+    this.inputHandler = new InputHandler(canvas);
     
     // Set up the animation loop
     this.lastTime = 0;
@@ -215,4 +215,3 @@ export class Game {
     this.camera.updateProjectionMatrix();
   }
 }
-
